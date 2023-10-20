@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { Component } from 'react';
+import Beer from './Beer';
+import { Container, Row } from 'react-bootstrap';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      beers: [],
+    };
+  }
+
+  async componentDidMount() {
+    const response = await axios.get('https://api.punkapi.com/v2/beers');
+    this.setState({
+      beers: response.data,
+    });
+    console.log(this.state.beers);
+  }
+
+  render() {
+    return (
+      <Container fluid>
+        <Row xs={1} md={2} className="g-4">
+          {this.state.beers.map((beer) => (
+            <Beer beer={{ ...beer }} key={beer.id} />
+          ))}
+        </Row>
+      </Container>
+    );
+  }
 }
 
 export default App;
