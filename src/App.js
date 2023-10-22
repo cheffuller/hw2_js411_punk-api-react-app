@@ -19,7 +19,6 @@ class App extends Component {
     this.setState({
       beers: response.data,
     });
-    console.log(this.state.beers);
   }
 
   render() {
