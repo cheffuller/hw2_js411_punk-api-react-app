@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card';
-import ToggleLike from './ToggleLike';
+import ToggleHeart from './ToggleHeart';
+import BeerPopup from './BeerPopup';
 
 export default function Beer({ beer }) {
 
@@ -9,7 +10,9 @@ export default function Beer({ beer }) {
       <Card.Body>
         <Card.Title>{beer.name}</Card.Title>
         <Card.Text>{beer.tagline}</Card.Text>
-        <ToggleLike beer={{ ...beer }}>Like</ToggleLike>
+        <BeerPopup beer={{ ...beer }}>Read More</BeerPopup>
+        <br />
+        <ToggleHeart></ToggleHeart>
       </Card.Body>
     </Card>
   );

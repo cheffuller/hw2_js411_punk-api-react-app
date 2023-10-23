@@ -19,11 +19,13 @@ class App extends Component {
     this.setState({
       beers: response.data,
     });
+    await console.log(this.state.beers)
   }
 
   render() {
     return (
       <Container fluid>
+        <h1>Craft Beer - For the People</h1>
         <Row xs={1} md={2} className="g-4">
           {this.state.beers.map((beer) => (
             <Beer beer={{ ...beer }} key={beer.id} />
